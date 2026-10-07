@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE-SOAP - Xà Phòng Zero Waste</title>
+    <style>
+        :root {
+            --bg-color: #F8F5F0;
+            --primary-brown: #5C3D2E;
+            --accent-orange: #E07A5F;
+            --leaf-green: #4A6B5D;
+            --text-dark: #2B2D42;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .brand-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-brown);
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .slogan {
+            font-size: 14px;
+            color: var(--leaf-green);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #EAE3D2;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: var(--primary-brown);
+            margin-top: 0;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 8px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .badge {
+            background-color: #E8F5E9;
+            color: var(--leaf-green);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #222;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- BRAND HEADER -->
+    <div class="header">
+        <h1 class="brand-title">RE-SOAP</h1>
+        <div class="slogan">Phụ phẩm hôm qua - Hương thơm hôm nay</div>
+    </div>
+
+    <!-- BATCH INFO -->
+    <div class="card">
+        <h2>🌱 Thông Tin Truy Xuất Nguồn Gốc</h2>
+        <div class="info-item">
+            <span class="info-label">Mã lô sản xuất:</span>
+            <span><strong>#RS-PHUTHO-01</strong></span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Nguồn phụ phẩm:</span>
+            <span>Bã cà phê & Bưởi Đoan Hùng</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Độ pH sản phẩm:</span>
+            <span class="badge">pH 9.0 (Đạt chuẩn)</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Thành phần:</span>
+            <span>Dầu dừa, dầu olive, bã cà phê, tinh dầu bưởi</span>
+        </div>
+    </div>
+
+    <!-- PROCESS VIDEO -->
+    <div class="card">
+        <h2>🎬 Hành Trình Tái Chế</h2>
+        <div class="video-placeholder">
+            ▶️ Clip quy trình thu gom & xà phòng hóa (15s)
+        </div>
+    </div>
+
+    <!-- FEEDBACK FORM -->
+    <div class="card">
+        <h2>🎁 Nhận Voucher Giảm 5.000đ</h2>
+        <form onsubmit="alert('Cảm ơn bạn! Mã voucher của bạn là: RESOAP5K'); return false;">
+            <div class="form-group">
+                <label>Bạn đánh giá thế nào về bao bì đai giấy Kraft?</label>
+                <select required>
+                    <option value="">-- Chọn đánh giá --</option>
+                    <option>Thân thiện môi trường & đẹp mắt</option>
+                    <option>Cần tối ưu thêm</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Số điện thoại nhận mã voucher:</label>
+                <input type="tel" placeholder="09x xxx xxxx" required>
+            </div>
+            <button type="submit" class="btn-submit">Gửi & Nhận Mã Ngay</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        © Nhóm 6 - Đồ án Khởi nghiệp Zero Waste<br>
+        Dự án RE-SOAP Phú Thọ
+    </div>
+</div>
+
+</body>
+</html>
