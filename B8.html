@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Nhap 2 so nguyen a va b: ";
+    cin >> a >> b;
+
+    int num1 = abs(a);
+    int num2 = abs(b);
+
+    int ucln = 1;
+    int min_val = (num1 < num2) ? num1 : num2;
+
+    for (int i = min_val; i >= 1; i--) {
+        if (num1 % i == 0 && num2 % i == 0) {
+            ucln = i;
+            break;
+        }
+    }
+
+    cout << "UCLN cua " << a << " va " << b << " la: " << ucln << endl;
+    return 0;
+}
