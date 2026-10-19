@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Cac so co 3 chu so thoa man la: " << endl;
+
+    for (int i = 100; i <= 999; i++) {
+        int a = i / 100;        // Chữ số hàng trăm
+        int b = (i / 10) % 10;  // Chữ số hàng chục
+        int c = i % 10;         // Chữ số hàng đơn vị
+
+        if (a*a*a + b*b*b + c*c*c == i) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+
+    return 0;
+}
