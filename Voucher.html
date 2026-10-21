@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận Voucher RE-SOAP</title>
+    <style>
+        /* CSS RESET & VARIABLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #F4EFEA;      /* Màu nền be/kem */
+            --primary-color: #3A251E; /* Nâu cà phê đậm */
+            --accent-color: #2D4A3E;  /* Xanh rêu sẫm */
+            --card-bg: #FFFFFF;
+            --text-muted: #6B5E57;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px 24px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(58, 37, 30, 0.08);
+            text-align: center;
+            border: 1px solid #E8DFD8;
+        }
+
+        .tag {
+            background-color: #E8F0EC;
+            color: var(--accent-color);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        p.desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+
+        /* KHUNG VOUCHER */
+        .voucher-box {
+            background: linear-gradient(135deg, #2D4A3E, #3A251E);
+            color: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(45, 74, 62, 0.2);
+        }
+
+        .voucher-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .voucher-code {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin: 10px 0;
+            color: #F4EFEA;
+        }
+
+        .voucher-note {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* NÚT COPY & FORM */
+        .form-group {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #D1C7BD;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            background-color: #FAF8F5;
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #233B31;
+        }
+
+        /* THÔNG BÁO SAU KHI COPY/GỬI */
+        .toast {
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--accent-color);
+            font-weight: 600;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="tag">🌿 RE-SOAP Zero Waste</span>
+    <h2>Phần Quà Của Bạn</h2>
+    <p class="desc">Cảm ơn bạn đã đồng hành cùng chiến dịch tái chế bã cà phê & vỏ bưởi!</p>
+
+    <!-- Thẻ hiển thị mã Voucher -->
+    <div class="voucher-box">
+        <div class="voucher-title">Voucher Ưu Đãi 10%</div>
+        <div class="voucher-code" id="codeText">RESOAP10</div>
+        <div class="voucher-note">Áp dụng cho mọi đơn hàng xà phòng thủ công</div>
+    </div>
+
+    <!-- Form điền SĐT nhận mã hoặc Nút Sao Chép Nhanh -->
+    <div class="form-group">
+        <label for="phone">Nhập SĐT để lưu mã (không bắt buộc):</label>
+        <input type="tel" id="phone" placeholder="Ví dụ: 0912345678">
+    </div>
+
+    <button class="btn" onclick="copyAndSubmit()">Sao Chép Mã & Lưu Ưu Đãi</button>
+    <div class="toast" id="toastMsg">✅ Đã sao chép mã "RESOAP10"!</div>
+</div>
+
+<script>
+    function copyAndSubmit() {
+        // 1. Sao chép mã voucher vào bộ nhớ tạm
+        const code = document.getElementById("codeText").innerText;
+        navigator.clipboard.writeText(code);
+
+        // 2. Hiển thị thông báo
+        const toast = document.getElementById("toastMsg");
+        toast.style.display = "block";
+
+        // 3. Lấy SĐT khách điền (nếu có)
+        const phone = document.getElementById("phone").value;
+        if(phone) {
+            console.log("Khách hàng đã đăng ký SĐT nhận voucher:", phone);
+            // Có thể thêm code gửi dữ liệu về Google Sheets/Database tại đây
+        }
+
+        // Tự động ẩn thông báo sau 3 giây
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
